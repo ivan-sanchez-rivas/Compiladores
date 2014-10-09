@@ -1,1 +1,2 @@
 c:\users\ivan\documents\visual studio 2013\Projects\DSharp\DSharp\bin\Debug\DSharp.exe.config
+C:\Users\Ivan\Documents\GitHub\Compiladores\DSharp\DSharp\bin\Debug\DSharp.exe.config
