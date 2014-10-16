@@ -1,2 +1,10 @@
 c:\users\ivan\documents\visual studio 2013\Projects\DSharp\DSharp\bin\Debug\DSharp.exe.config
 C:\Users\Ivan\Documents\GitHub\Compiladores\DSharp\DSharp\bin\Debug\DSharp.exe.config
+C:\Users\Felipe\Documents\CETYS\7moSemestre\Compiladores\D#\trunk\DSharp\DSharp\bin\Debug\DSharp.exe.config
+C:\Users\Felipe\Documents\CETYS\7moSemestre\Compiladores\D#\trunk\DSharp\DSharp\bin\Debug\DSharp.exe
+C:\Users\Felipe\Documents\CETYS\7moSemestre\Compiladores\D#\trunk\DSharp\DSharp\bin\Debug\DSharp.pdb
+C:\Users\Felipe\Documents\CETYS\7moSemestre\Compiladores\D#\trunk\DSharp\DSharp\bin\Debug\DSharpLibrary.dll
+C:\Users\Felipe\Documents\CETYS\7moSemestre\Compiladores\D#\trunk\DSharp\DSharp\bin\Debug\DSharpLibrary.pdb
+C:\Users\Felipe\Documents\CETYS\7moSemestre\Compiladores\D#\trunk\DSharp\DSharp\obj\Debug\DSharp.csprojResolveAssemblyReference.cache
+C:\Users\Felipe\Documents\CETYS\7moSemestre\Compiladores\D#\trunk\DSharp\DSharp\obj\Debug\DSharp.exe
+C:\Users\Felipe\Documents\CETYS\7moSemestre\Compiladores\D#\trunk\DSharp\DSharp\obj\Debug\DSharp.pdb
