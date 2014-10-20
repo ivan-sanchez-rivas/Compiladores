@@ -11,12 +11,12 @@ namespace DSharpLibrary
         Error = 0,
         Int,//
         Double,//
-        Elseif,
-        While,
+        Elseif,//
+        While,//
         ID,//
-        If,
-        For,
-        Else,
+        If,//
+        For,//
+        Else,//
         Addition,//
         Substract,//
         Multiplication, //
@@ -36,16 +36,11 @@ namespace DSharpLibrary
         LeftParenthesis, //
         RightParenthesis,
         LeftBracket,//
-        RightBracket,
-        Space,
-        WhiteSpace,
+        RightBracket,//
+        Space,//
+        WhiteSpace,//
         NewLine,
-        Tab
-        //Number = 1,
-        //RealNumber,
-        //Assign,
-        //Range,
-        //ID
+        Tab //
     }
 
     public class Token

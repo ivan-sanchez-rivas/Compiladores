@@ -78,7 +78,7 @@ namespace DSharpLibrary
 
         private void SetStates()
         {
-            string numbers = "0123456789";
+            string numbers = "0123456789";   
             string invalid = "\n\t";
             string validIdent = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" + numbers;
 
@@ -129,13 +129,34 @@ namespace DSharpLibrary
                     return 25;
                 else if (value == '@')
                     return 26;
-                else if (_tmp.Contains("for"))
+                else if (value == 'f')
+                {
+                    _tokenType = 5;
                     return 27;
+                }
+                else if (value == 'e')
+                {
+                    _tokenType = 5;
+                    return 28;
+                }
+                else if (value == 'w')
+                {
+                    _tokenType = 5;
+                    return 29;
+                }
+                else if (value == 'i')
+                {
+                    _tokenType = 5;
+                    return 30;
+                }
+
                 else if (validIdent.Contains(value) && numbers.Contains(value) == false)
                 {
                     _tokenType = 5;
                     return 8;
                 }
+                else if (value == '\t')
+                    return -2;
                 else if (value == ' ')
                     return -2;
                 return -1; // Error
@@ -379,8 +400,25 @@ namespace DSharpLibrary
             // 27 For
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 7;
-                return 5;
+                if (x[y] == 'o')
+                {
+                    _tokenType = 5;
+                    return 27;
+                }
+                if (x[y] == 'r')
+                {
+                    _tokenType = 7;
+                    return 27;
+
+                }
+                else if (validIdent.Contains(x[y]))
+                {
+                    _tokenType = 5;
+                    return 27;
+                }
+                return 0;
+                //_tokenType = 7;
+                //return 5;
 
 
             }));
@@ -388,29 +426,97 @@ namespace DSharpLibrary
             // 28 Elseif
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 3;
-                return 5;
+                if (x[y] == 'l')
+                {
+                    _tokenType = 5;
+                    return 28;
+                }
+                else if (x[y] == 's')
+                {
+                    _tokenType = 5;
+                    return 28;
+
+                }
+                else if (x[y] == 'e')
+                {
+                    _tokenType = 8;
+                    return 28;
+
+                }
+                else if (x[y] == 'i')
+                {
+                    _tokenType = 5;
+                    return 28;
+
+                }
+                else if (x[y] == 'f')
+                {
+                    _tokenType = 3;
+                    return 28;
+
+                }
+                else if (validIdent.Contains(x[y]))
+                {
+                    _tokenType = 5;
+                    return 28;
+                }
+                return 0;
+                //_tokenType = 3;
+                //return 5;
             }));
 
             // 29 While
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 9;
-                return 4;
+                if (x[y] == 'h')
+                {
+                    _tokenType = 5;
+                    return 29;
+                }
+                else if (x[y] == 'i')
+                {
+                    _tokenType = 5;
+                    return 29;
+
+                }
+                else if (x[y] == 'l')
+                {
+                    _tokenType = 5;
+                    return 29;
+
+                }
+                else if (x[y] == 'e')
+                {
+                    _tokenType = 4;
+                    return 29;
+
+                }
+                else if (validIdent.Contains(x[y]))
+                {
+                    _tokenType = 5;
+                    return 29;
+                }
+                return 0;
+                //_tokenType = 4;
+                //return 5;
             }));
 
             // 30 If
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 6;
-                return 5;
-            }));
-
-            // 31 Else
-            _states.Add(new State((x, y) =>
-            {
-                _tokenType = 8;
-                return 5;
+                if (x[y] == 'f')
+                {
+                    _tokenType = 6;
+                    return 30;
+                }
+                else if (validIdent.Contains(x[y]))
+                {
+                    _tokenType = 5;
+                    return 30;
+                }
+                return 0;
+                //_tokenType = 6;
+                //return 5;
             }));
         }
     }
