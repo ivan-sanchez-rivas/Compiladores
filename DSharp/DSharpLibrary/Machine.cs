@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace DSharpLibrary
 {
@@ -34,7 +35,7 @@ namespace DSharpLibrary
                     //continue;
                 }
 
-                if (currentState == 0 || currentState == 5 || currentState == 7)
+                if (currentState == 0 || currentState == 5 || currentState == 7 || currentState == 17 || currentState == 19 || currentState == 21)
                 {
                     if (currentState == 5 || currentState == 7)
                     {
@@ -42,8 +43,12 @@ namespace DSharpLibrary
                         inputIndex++;
                         currentState = 0;
                     }
-                    _tokens.Add(new Token(_tmp, _tokenType));
-                    _tmp = string.Empty;
+                    if (_tmp != string.Empty)
+                    {
+                        _tokens.Add(new Token(_tmp, _tokenType));
+                        _tmp = string.Empty;
+                    }
+
                 }
                 else
                 {
@@ -88,6 +93,42 @@ namespace DSharpLibrary
                     return 4;
                 else if (value == '.')
                     return 6;
+                else if (value == '+')
+                    return 9;
+                else if (value == '-')
+                    return 10;
+                else if (value == '*')
+                    return 11;
+                else if (value == '/')
+                    return 12;
+                else if (value == '&')
+                    return 13;
+                else if (value == '!')
+                    return 14;
+                else if (value == '|')
+                    return 15;
+                else if (value == '=')
+                    return 16;
+                else if (value == ';')
+                    return 17;
+                else if (value == '(')
+                    return 18;
+                else if (value == ')')
+                    return 19;
+                else if (value == '{')
+                    return 20;
+                else if (value == '}')
+                    return 21;
+                else if (value == '>')
+                    return 22;
+                else if (value == '<')
+                    return 23;
+                else if (value == '#')
+                    return 24;
+                else if (value == '$')
+                    return 25;
+                else if (value == '@')
+                    return 26;
                 else if (validIdent.Contains(value) && numbers.Contains(value) == false)
                 {
                     _tokenType = 5;
@@ -176,6 +217,197 @@ namespace DSharpLibrary
                     return 0;
             }));
 
+            //9 +
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 9;
+                return 0;
+            }));
+
+            //10 -
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 10;
+                return 0;
+            }));
+
+            //11 *
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 11;
+                return 0;
+            }));
+
+            //12 /
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 12;
+                return 0;
+            }));
+            
+
+            //13 &
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 15;
+                return 0;
+            }));
+
+            // 14 !
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 16;
+                return 0;
+            }));
+            // 15 |
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 17;
+                return 0;
+            }));
+
+            // 16 =
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 18;
+                return 0;
+            }));
+
+            // 17 ;
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 24;
+                return 5;
+            }));
+
+            // 18 (
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 25;
+                return 0;
+            }));
+
+            // 19 )
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 26;
+                return 5;
+            }));
+
+            // 20 {
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 27;
+                return 0;
+            }));
+
+            // 21 }
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 28;
+                return 5;
+            }));
+            // 22 >=, >
+            _states.Add(new State((x, y) =>
+            {
+                if (x[y] == '=')
+                {
+                    _tokenType = 20;
+                    return 5;
+                }
+
+                else
+                {
+                    _tokenType = 13;
+                    return 0;
+                }
+
+            }));
+
+            // 23 <=, <
+            _states.Add(new State((x, y) =>
+            {
+                if (x[y] == '=')
+                {
+                    _tokenType = 19;
+                    return 5;
+                }
+                else
+                {
+                    _tokenType = 14;
+                    return 0;
+                }
+            }));
+
+            // 24 Comentarios #
+            _states.Add(new State((x, y) =>
+            {
+                    _tokenType = 21;
+                    return 0;
+            }));
+
+            // 25 MoneyCommentStart $@
+            _states.Add(new State((x, y) =>
+            {
+                if (x[y] == '@')
+                {
+                    _tokenType = 22;
+                    return 5;
+                }
+                else
+                {
+                    return -1;
+                }
+            }));
+
+            // 26 MoneyCommentEnd @$
+            _states.Add(new State((x, y) =>
+            {
+                if (x[y] == '$')
+                {
+                    _tokenType = 23;
+                    return 5;
+                }
+                else
+                {
+                    return -1;
+                }
+            }));
+
+            // 27 For
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 7;
+                return 5;
+            }));
+
+            // 28 Elseif
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 3;
+                return 5;
+            }));
+
+            // 29 While
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 9;
+                return 4;
+            }));
+
+            // 30 If
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 6;
+                return 5;
+            }));
+
+            // 31 Else
+            _states.Add(new State((x, y) =>
+            {
+                _tokenType = 8;
+                return 5;
+            }));
         }
     }
 }
