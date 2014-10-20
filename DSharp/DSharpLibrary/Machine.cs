@@ -129,6 +129,8 @@ namespace DSharpLibrary
                     return 25;
                 else if (value == '@')
                     return 26;
+                else if (_tmp.Contains("for"))
+                    return 27;
                 else if (validIdent.Contains(value) && numbers.Contains(value) == false)
                 {
                     _tokenType = 5;
@@ -379,6 +381,8 @@ namespace DSharpLibrary
             {
                 _tokenType = 7;
                 return 5;
+
+
             }));
 
             // 28 Elseif
