@@ -1,0 +1,5 @@
+C:\Users\Ivan\Documents\GitHub\Compiladores\DSharp\DSharpLibrary\bin\Debug\DSharpLibrary.dll
+C:\Users\Ivan\Documents\GitHub\Compiladores\DSharp\DSharpLibrary\bin\Debug\DSharpLibrary.pdb
+C:\Users\Ivan\Documents\GitHub\Compiladores\DSharp\DSharpLibrary\obj\Debug\DSharpLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Ivan\Documents\GitHub\Compiladores\DSharp\DSharpLibrary\obj\Debug\DSharpLibrary.dll
+C:\Users\Ivan\Documents\GitHub\Compiladores\DSharp\DSharpLibrary\obj\Debug\DSharpLibrary.pdb

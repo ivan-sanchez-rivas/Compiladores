@@ -8,11 +8,44 @@ namespace DSharpLibrary
 {
     public enum TokenType
     {
-        Number = 1,
-        RealNumber,
-        Assign,
-        Range,
-        ID
+        Error = 0,
+        If,
+        Else,
+        Elseif,
+        While,
+        For,
+        Int,
+        String,
+        Double,
+        Addition,
+        Substract,
+        Multiplication,
+        Division,
+        BiggerThan,
+        LessThan,
+        And,
+        Not,
+        Or,
+        Equal,
+        LessOrEqualThan,
+        BiggerOrEqualThan,
+        Comment,
+        StarCommentStart,
+        StarCommentEnd,
+        Terminator,
+        LeftParenthesis,
+        RightParenthesis,
+        LeftBracket,
+        RightBracket,
+        Space,
+        WhiteSpace,
+        NewLine,
+        Tab
+        //Number = 1,
+        //RealNumber,
+        //Assign,
+        //Range,
+        //ID
     }
 
     public class Token
@@ -31,7 +64,8 @@ namespace DSharpLibrary
 
         public override string ToString()
         {
-            return string.Format("{0} -> {1}", _value, _type.ToString());
+            var _typeNumber = (int)((TokenType)Enum.Parse(typeof(TokenType), _type.ToString()));
+            return string.Format("{0} -> {1}", _value, _typeNumber);
         }
     }
 }
