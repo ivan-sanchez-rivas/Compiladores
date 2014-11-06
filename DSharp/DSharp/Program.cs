@@ -12,6 +12,7 @@ namespace DSharp
         static void Main(string[] args)
         {
             var machine = new Machine();
+            var syntax = new Syntax();
                 Console.WriteLine("Enter a source code input:");
                 string input = Console.ReadLine();
 
@@ -28,8 +29,12 @@ namespace DSharp
                     else
                     {
                         Console.WriteLine("The tokens are:\n");
-                        foreach (Token t in machine.Tokens)
+                        foreach (Token t in machine.Tokens){
                             Console.WriteLine(t);
+                            syntax.TokenStrip(machine.Tokens);
+                        }
+                            
+                        
                     }
                     Console.ReadLine();
                 }
