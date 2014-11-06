@@ -28,7 +28,7 @@ namespace DSharpLibrary
                 int[] temp = new int[array.Length];
                 if (item == 24)
                 {
-                    arrayList.Add(array);
+                    arrayList.Add(temp);
                 }
             }
             //arrayList.Add(array);
