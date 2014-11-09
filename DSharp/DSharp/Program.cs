@@ -12,7 +12,7 @@ namespace DSharp
         static void Main(string[] args)
         {
             var machine = new Machine();
-            var syntax = new Syntax();
+            var syntax = new SyntaxMachine();
                 Console.WriteLine("Enter a source code input:");
                 string input = Console.ReadLine();
 

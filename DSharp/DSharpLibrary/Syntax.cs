@@ -9,7 +9,7 @@ namespace DSharpLibrary
     public class Syntax
     {
         private List<int> _tokenNumber = new List<int>();
-        List<int[]> arrayList = new List<int[]>();
+        List<List<int>> arrayList = new List<List<int>>();
         public Syntax()
         {
 
@@ -23,12 +23,15 @@ namespace DSharpLibrary
                 _tokenNumber.Add(num);
             }
             int[] array = _tokenNumber.ToArray();
+            arrayList.Add(new List<int>());
+            int index = 0;
             foreach (var item in array)
             {
-                int[] temp = new int[array.Length];
+                arrayList[index].Add(item);
                 if (item == 24)
                 {
-                    arrayList.Add(temp);
+                    arrayList.Add(new List<int>());
+                    index++;
                 }
             }
             //arrayList.Add(array);
