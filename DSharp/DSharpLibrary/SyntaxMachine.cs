@@ -9,9 +9,11 @@ namespace DSharpLibrary
     public class SyntaxMachine
     {
         private List<State> _states = new List<State>();
+        private List<SyntaxRules> _rules = new List<SyntaxRules>();
         private string _tmp = string.Empty;
         private List<int> _tokenNumber = new List<int>();
         List<List<int>> arrayList = new List<List<int>>();
+        private int _ruleType = 0;
          public SyntaxMachine()
         {
             SetStates();
@@ -64,7 +66,7 @@ namespace DSharpLibrary
                     }
                     if (_tmp != string.Empty)
                     {
-                        _tokens.Add(new Token(_tmp, _tokenType));
+                        _rules.Add(new Token(_tmp, _ruleType));
                         _tmp = string.Empty;
                     }
 
@@ -83,7 +85,7 @@ namespace DSharpLibrary
                     else
                     {
                         if (_tmp != string.Empty)
-                            _tokens.Add(new Token(_tmp, _tokenType));
+                            _rules.Add(new Token(_tmp, _ruleType));
                         success = true;
                         return 1;
                     }
@@ -107,7 +109,7 @@ namespace DSharpLibrary
                 char value = x[y];
 
                 if (numbers.Contains(value))
-                    return _tokenType = 1;
+                    return _ruleType = 1;
                 else if (value == ':')
                     return 4;
                 else if (value == '.')
@@ -150,28 +152,28 @@ namespace DSharpLibrary
                     return 26;
                 else if (value == 'f')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 27;
                 }
                 else if (value == 'e')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 28;
                 }
                 else if (value == 'w')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 29;
                 }
                 else if (value == 'i')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 30;
                 }
 
                 else if (validIdent.Contains(value) && numbers.Contains(value) == false)
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 8;
                 }
                 else if (value == '\t')
@@ -197,14 +199,14 @@ namespace DSharpLibrary
             {
                 if (numbers.Contains(x[y]))
                 {
-                    _tokenType = 2;
+                    _ruleType = 2;
                     return 3;
                 }
                 else if (x[y] == '.')
                 {
                     string number = _tmp.Substring(0, _tmp.Length - 1);
-                    _tokens.Add(new Token(number, 1));
-                    _tokens.Add(new Token("..", 4));
+                    _rules.Add(new Token(number, 1));
+                    _rules.Add(new Token("..", 4));
                     _tmp = string.Empty;
                     return -2;
                 }
@@ -225,7 +227,7 @@ namespace DSharpLibrary
             {
                 if (x[y] == '=')
                 {
-                    _tokenType = 3;
+                    _ruleType = 3;
                     return 5;
                 }
                 else
@@ -240,7 +242,7 @@ namespace DSharpLibrary
             {
                 if (x[y] == '.')
                 {
-                    _tokenType = 4;
+                    _ruleType = 4;
                     return 7;
                 }
                 else
@@ -262,28 +264,28 @@ namespace DSharpLibrary
             //9 +
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 9;
+                _ruleType = 9;
                 return 0;
             }));
 
             //10 -
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 10;
+                _ruleType = 10;
                 return 0;
             }));
 
             //11 *
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 11;
+                _ruleType = 11;
                 return 0;
             }));
 
             //12 /
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 12;
+                _ruleType = 12;
                 return 0;
             }));
             
@@ -291,62 +293,62 @@ namespace DSharpLibrary
             //13 &
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 15;
+                _ruleType = 15;
                 return 0;
             }));
 
             // 14 !
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 16;
+                _ruleType = 16;
                 return 0;
             }));
             // 15 |
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 17;
+                _ruleType = 17;
                 return 0;
             }));
 
             // 16 =
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 18;
+                _ruleType = 18;
                 return 0;
             }));
 
             // 17 ;
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 24;
+                _ruleType = 24;
                 return 5;
             }));
 
             // 18 (
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 25;
+                _ruleType = 25;
                 return 0;
             }));
 
             // 19 )
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 26;
+                _ruleType = 26;
                 return 5;
             }));
 
             // 20 {
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 27;
+                _ruleType = 27;
                 return 0;
             }));
 
             // 21 }
             _states.Add(new State((x, y) =>
             {
-                _tokenType = 28;
+                _ruleType = 28;
                 return 5;
             }));
             // 22 >=, >
@@ -354,13 +356,13 @@ namespace DSharpLibrary
             {
                 if (x[y] == '=')
                 {
-                    _tokenType = 20;
+                    _ruleType = 20;
                     return 5;
                 }
 
                 else
                 {
-                    _tokenType = 13;
+                    _ruleType = 13;
                     return 0;
                 }
 
@@ -371,12 +373,12 @@ namespace DSharpLibrary
             {
                 if (x[y] == '=')
                 {
-                    _tokenType = 19;
+                    _ruleType = 19;
                     return 5;
                 }
                 else
                 {
-                    _tokenType = 14;
+                    _ruleType = 14;
                     return 0;
                 }
             }));
@@ -384,7 +386,7 @@ namespace DSharpLibrary
             // 24 Comentarios #
             _states.Add(new State((x, y) =>
             {
-                    _tokenType = 21;
+                    _ruleType = 21;
                     return 0;
             }));
 
@@ -393,7 +395,7 @@ namespace DSharpLibrary
             {
                 if (x[y] == '@')
                 {
-                    _tokenType = 22;
+                    _ruleType = 22;
                     return 5;
                 }
                 else
@@ -407,7 +409,7 @@ namespace DSharpLibrary
             {
                 if (x[y] == '$')
                 {
-                    _tokenType = 23;
+                    _ruleType = 23;
                     return 5;
                 }
                 else
@@ -421,18 +423,18 @@ namespace DSharpLibrary
             {
                 if (x[y] == 'o')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 27;
                 }
                 if (x[y] == 'r')
                 {
-                    _tokenType = 7;
+                    _ruleType = 7;
                     return 27;
 
                 }
                 else if (validIdent.Contains(x[y]))
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 27;
                 }
                 return 0;
@@ -447,36 +449,36 @@ namespace DSharpLibrary
             {
                 if (x[y] == 'l')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 28;
                 }
                 else if (x[y] == 's')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 28;
 
                 }
                 else if (x[y] == 'e')
                 {
-                    _tokenType = 8;
+                    _ruleType = 8;
                     return 28;
 
                 }
                 else if (x[y] == 'i')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 28;
 
                 }
                 else if (x[y] == 'f')
                 {
-                    _tokenType = 3;
+                    _ruleType = 3;
                     return 28;
 
                 }
                 else if (validIdent.Contains(x[y]))
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 28;
                 }
                 return 0;
@@ -489,30 +491,30 @@ namespace DSharpLibrary
             {
                 if (x[y] == 'h')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 29;
                 }
                 else if (x[y] == 'i')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 29;
 
                 }
                 else if (x[y] == 'l')
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 29;
 
                 }
                 else if (x[y] == 'e')
                 {
-                    _tokenType = 4;
+                    _ruleType = 4;
                     return 29;
 
                 }
                 else if (validIdent.Contains(x[y]))
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 29;
                 }
                 return 0;
@@ -525,12 +527,12 @@ namespace DSharpLibrary
             {
                 if (x[y] == 'f')
                 {
-                    _tokenType = 6;
+                    _ruleType = 6;
                     return 30;
                 }
                 else if (validIdent.Contains(x[y]))
                 {
-                    _tokenType = 5;
+                    _ruleType = 5;
                     return 30;
                 }
                 return 0;

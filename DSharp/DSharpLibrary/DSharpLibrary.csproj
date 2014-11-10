@@ -44,6 +44,7 @@
     <Compile Include="State.cs" />
     <Compile Include="Syntax.cs" />
     <Compile Include="SyntaxMachine.cs" />
+    <Compile Include="SyntaxRules.cs" />
     <Compile Include="SyntaxState.cs" />
     <Compile Include="Token.cs" />
   </ItemGroup>
