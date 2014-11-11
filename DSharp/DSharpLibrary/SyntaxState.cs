@@ -8,16 +8,16 @@ namespace DSharpLibrary
 {
     class SyntaxState
     {
-            private Func<List<int>> _function;
+        private Func<List<List<int>>, int, int> _function;
 
-            public Func<List<int>> Operate
-            {
-                get { return _function; }
-            }
+        public Func<List<List<int>>, int, int> Operate
+        {
+            get { return _function; }
+        }
 
-            public SyntaxState(Func<List<int>> function)
-            {
-                _function = function;
-            }
+        public SyntaxState(Func<List<List<int>>, int, int> function)
+        {
+            _function = function;
+        }
     }
 }

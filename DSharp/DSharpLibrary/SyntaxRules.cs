@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DSharpLibrary
 {
-    class SyntaxRules
+    public class SyntaxRules
     {
         public enum GrammarRules
         {
@@ -50,9 +50,6 @@ namespace DSharpLibrary
             EOF, //EOF
             ID, // [a-z A-Z] [a-z A-Z 0-9]*
         }
-
-        public class SyntaxRules
-        {
             private GrammarRules _type;
             private string _value;
 
@@ -70,6 +67,5 @@ namespace DSharpLibrary
                 var _typeNumber = (int)((GrammarRules)Enum.Parse(typeof(GrammarRules), _type.ToString()));
                 return string.Format("{0} -> {1} {2}", _value, _typeNumber, _type.ToString());
             }
-        }
     }
 }
