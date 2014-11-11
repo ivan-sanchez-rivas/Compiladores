@@ -35,7 +35,22 @@ namespace DSharpLibrary
             foreach (var item in array)
             {
                 arrayList[index].Add(item);
-                if (item == 24)
+                if (item == 24) // ;
+                {
+                    arrayList.Add(new List<int>());
+                    index++;
+                }
+                else if (item == 26) // )
+                {
+                    arrayList.Add(new List<int>());
+                    index++;
+                }
+                else if (item == 27) // {
+                {
+                    arrayList.Add(new List<int>());
+                    index++;
+                }
+                else if (item == 28) // }
                 {
                     arrayList.Add(new List<int>());
                     index++;
@@ -43,7 +58,7 @@ namespace DSharpLibrary
             }
 
             syntax.Operate(arrayList);
-            
+
             return syntax.Rules;
             //arrayList.Add(array);
             //var result = string.Join(",", _tokenNumber.Select(x => x.ToString()).ToArray());
@@ -61,9 +76,9 @@ namespace DSharpLibrary
                     //continue;
                 }
 
-                if (currentState == 0 || currentState == 5 || currentState == 7 || currentState == 17 || currentState == 19 || currentState == 21)
+                if (currentState == 0 || currentState == 2 || currentState == 7 || currentState == 17 || currentState == 19 || currentState == 21)
                 {
-                    if (currentState == 5 || currentState == 7)
+                    if (currentState == 2 || currentState == 7)
                     {
                         _tmp += input[inputIndex];
                         inputIndex++;
@@ -85,7 +100,7 @@ namespace DSharpLibrary
 
                 if (inputIndex == input.Count) // EOF
                 {
-                    if (currentState == 5 || currentState == 7)
+                    if (currentState == 2 || currentState == 7)
                         return 0;
                     else
                     {
@@ -108,20 +123,40 @@ namespace DSharpLibrary
             _states.Add(new SyntaxState((x, y) =>
             {
                 var value = x[y];
-                var result = string.Join("", value.Select(z => z.ToString()).ToArray());
+                var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
                 ////5 5 18 1 24
-                if (result == "5518124")
+                if (result == "5 5 18 1 24") //int ID = [0-9]+ Terminador
                     return _ruleType = 5;
+                //6 25 5 14 1 26 27 5 5 18 1 24 28
+                else if (result == "6 25 5 14 1 26")  // if(expresion comparador expresion){ sent } subcond
+                    return 1;
                 else
-                    return -2;
+                    return -1;
             }));
 
             // 1
             _states.Add(new SyntaxState((x, y) =>
             {
-                return 1;
-            }));
+                var value = x[y];
+                var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
+                if (result == "27")
+                {
+                    return 1;
+                }
+                if (result == "5 5 18 1 24")
+                {
+                    return 1;
+                }
+                if (result == "28")
+                {
+                    _ruleType = 20;
+                    return 0;
+                }
+                return -1;
 
+            }));
+            //2
+            _states.Add(null);
         }
     }
 }
