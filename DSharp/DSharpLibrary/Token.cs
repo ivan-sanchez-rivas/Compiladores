@@ -9,38 +9,38 @@ namespace DSharpLibrary
     public enum TokenType
     {
         Error = 0,
-        Int,//
-        Double,//
-        Elseif,//
-        While,//
-        ID,//
-        If,//
-        For,//
-        Else,//
-        Addition,//
-        Substract,//
-        Multiplication, //
-        Division,//
-        BiggerThan, //
-        LessThan, //
-        And, //
-        Not, //
-        Or, //
-        Equal, //
-        LessOrEqualThan,//
-        BiggerOrEqualThan,//
-        Comment, //
-        MoneyCommentStart,//
-        MoneyCommentEnd,//
-        Terminator,//
-        LeftParenthesis, //
-        RightParenthesis,
-        LeftBracket,//
-        RightBracket,//
-        Space,//
-        WhiteSpace,//
-        NewLine,
-        Tab //
+        Int,//1
+        Double,//2
+        Elseif,//3
+        While,//4
+        ID,//5
+        If,//6
+        For,//7
+        Else,//8
+        Addition,//9
+        Substract,//10
+        Multiplication, //11
+        Division,//12
+        BiggerThan, //13
+        LessThan, //14
+        And, //15
+        Not, //16
+        Or, //17
+        Equal, //18
+        LessOrEqualThan,//19
+        BiggerOrEqualThan,//20
+        Comment, //21
+        MoneyCommentStart,//22
+        MoneyCommentEnd,//23
+        Terminator,//24
+        LeftParenthesis, //25
+        RightParenthesis,//26
+        LeftBracket,//27
+        RightBracket,//28
+        Space,//29
+        WhiteSpace,//30
+        NewLine,//31
+        Tab //32
     }
 
     public class Token

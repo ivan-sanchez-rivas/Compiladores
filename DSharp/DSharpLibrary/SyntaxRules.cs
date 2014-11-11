@@ -11,44 +11,46 @@ namespace DSharpLibrary
         public enum GrammarRules
         {
             SentenceCond = 0,
-            SentenceCycle,
-            SentenceComment,
-            SentenceType,
-            SentenceEOF,
-            TypeInt, //int ID = [0-9]+ Terminador
-            TypeString, // string ID = "[.*]" Terminador
-            TypeDouble, // double ID = [0-9]*(\.[0.9]*)?Terminador
-            OperatorSum, // +
-            OperatorRest, // -
-            OperatorMult, // *
-            OperatorDiv, // (/)
-            CompareBiggerThan, // >
-            CompareLessThan, // <
-            CompareAnd, // &
-            CompareNot, // !
-            CompareOr, // |
-            CompareEqual, // ==
-            CompareLessOrEqualThan, // <=
-            CompareBiggerOrEqualThan, // >=
-            ConditionIf, // if(expresion comparador expresion){ sent } subcond
-            SubCondE, // Cualquiera
-            SubCondElse, // else{sent}
-            SubCondElseIf, //elseif(expresion comparador expresion) { sent } subcond
-            CycleWhile, // while(expresion comparador expresion) {sent}
-            CycleFor, //for(int asignacion ; ID comparador expresion ; ID++){sent}
-            AsignationInt, // ID=[0-9]+
-            AsignationString, //ID = ".*"
-            AsignationDouble, //ID = [0-9]* (\.[0.9]*)?
-            Comment, // # sentence NewLine
-            CommentLong, // StartComment Sentence EndComment
-            StartComment, // $@
-            EndComment, //@$
-            Terminator, // ;
-            Space, // [/s]
-            NewLine, // [/n]
-            Tab, // [/t]
-            EOF, //EOF
-            ID, // [a-z A-Z] [a-z A-Z 0-9]*
+            SentenceCycle, //1
+            SentenceComment, //2
+            SentenceType, //3
+            SentenceEOF, //4
+            TypeInt, //5. int ID = [0-9]+ Terminador
+            TypeString, //6. string ID = "[.*]" Terminador
+            TypeDouble, //7. double ID = [0-9]*(\.[0.9]*)?Terminador
+            OperatorSum, //8. +
+            OperatorRest, //9. -
+            OperatorMult, //10. *
+            OperatorDiv, //11. (/)
+            CompareBiggerThan, //12. >
+            CompareLessThan, //13. <
+            CompareAnd, //14. &
+            CompareNot, //15. !
+            CompareOr, //16. |
+            CompareEqual, //17. ==
+            CompareLessOrEqualThan, //18. <=
+            CompareBiggerOrEqualThan, //19. >=
+            ConditionIf, //20. if(expresion comparador expresion){ sent } subcond
+            //                   (6 25 5 14 1 26 27 5 5 18 1 24 28)
+            //                    ()
+            SubCondE, //21. Cualquiera
+            SubCondElse, //22. else{sent}
+            SubCondElseIf, //23. elseif(expresion comparador expresion) { sent } subcond
+            CycleWhile, //24. while(expresion comparador expresion) {sent}
+            CycleFor, //25. for(int asignacion ; ID comparador expresion ; ID++){sent}
+            AsignationInt, //26. ID=[0-9]+
+            AsignationString, //27. ID = ".*"
+            AsignationDouble, //28. ID = [0-9]* (\.[0.9]*)?
+            Comment, //29. # sentence NewLine
+            CommentLong, //30. StartComment Sentence EndComment
+            StartComment, //31. $@
+            EndComment, //32. @$
+            Terminator, //33. ;
+            Space, //34. [/s]
+            NewLine, //35. [/n]
+            Tab, //36. [/t]
+            EOF, //37. EOF
+            ID, //38. [a-z A-Z] [a-z A-Z 0-9]*
         }
             private GrammarRules _type;
             private string _value;
