@@ -11,6 +11,7 @@ namespace DSharp
     {
         static void Main(string[] args)
         {
+            List<SyntaxRules> rules = new List<SyntaxRules>();
             var machine = new Machine();
             var syntax = new SyntaxMachine();
                 Console.WriteLine("Enter a source code input:");
@@ -31,7 +32,15 @@ namespace DSharp
                         Console.WriteLine("The tokens are:\n");
                         foreach (Token t in machine.Tokens){
                             Console.WriteLine(t);
-                            syntax.TokenStrip(machine.Tokens);
+                            
+                        }
+
+                        Console.WriteLine("\n");
+                        Console.WriteLine("Analizador Sintactico: \n");
+                        rules = syntax.TokenStrip(machine.Tokens);
+                        foreach (SyntaxRules sr in rules)
+                        {
+                            Console.WriteLine(sr);
                         }
                             
                         

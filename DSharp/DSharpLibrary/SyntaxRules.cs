@@ -65,7 +65,7 @@ namespace DSharpLibrary
             public override string ToString()
             {
                 var _typeNumber = (int)((GrammarRules)Enum.Parse(typeof(GrammarRules), _type.ToString()));
-                return string.Format("{0} -> {1} {2}", _value, _typeNumber, _type.ToString());
+                return string.Format("{0} {1}", _typeNumber, _type.ToString());
             }
     }
 }

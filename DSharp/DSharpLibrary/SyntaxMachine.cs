@@ -14,14 +14,14 @@ namespace DSharpLibrary
         private List<int> _tokenNumber = new List<int>();
         List<List<int>> arrayList = new List<List<int>>();
         private int _ruleType = 0;
-
+        public List<SyntaxRules> Rules { get { return _rules; } }
         public SyntaxMachine()
         {
             SetStates();
         }
         int inputIndex = 0, currentState = 0;
         private bool success = false;
-        public void TokenStrip(List<Token> tokenList)
+        public List<SyntaxRules> TokenStrip(List<Token> tokenList)
         {
             var syntax = new SyntaxMachine();
             foreach (Token t in tokenList)
@@ -43,6 +43,8 @@ namespace DSharpLibrary
             }
 
             syntax.Operate(arrayList);
+            
+            return syntax.Rules;
             //arrayList.Add(array);
             //var result = string.Join(",", _tokenNumber.Select(x => x.ToString()).ToArray());
         }
@@ -69,7 +71,7 @@ namespace DSharpLibrary
                     }
                     if (_tmp != string.Empty)
                     {
-                        //_rules.Add(new Token(_tmp, _ruleType));
+                        _rules.Add(new SyntaxRules(_tmp, _ruleType));
                         _tmp = string.Empty;
                     }
 
@@ -81,18 +83,18 @@ namespace DSharpLibrary
 
                 }
 
-                //if (inputIndex == input.Length) // EOF
-                //{
-                //    if (currentState == 5 || currentState == 7)
-                //        return 0;
-                //    else
-                //    {
-                //        if (_tmp != string.Empty)
-                //            //_rules.Add(new Token(_tmp, _ruleType));
-                //        success = true;
-                //        return 1;
-                //    }
-                //}
+                if (inputIndex == input.Count) // EOF
+                {
+                    if (currentState == 5 || currentState == 7)
+                        return 0;
+                    else
+                    {
+                        if (_tmp != string.Empty)
+                            _rules.Add(new SyntaxRules(_tmp, _ruleType));
+                        success = true;
+                        return 1;
+                    }
+                }
                 Operate(input);
             }
             if (success)
@@ -106,7 +108,12 @@ namespace DSharpLibrary
             _states.Add(new SyntaxState((x, y) =>
             {
                 var value = x[y];
-                    return _ruleType = 1;
+                var result = string.Join("", value.Select(z => z.ToString()).ToArray());
+                ////5 5 18 1 24
+                if (result == "5518124")
+                    return _ruleType = 5;
+                else
+                    return -2;
             }));
 
             // 1
