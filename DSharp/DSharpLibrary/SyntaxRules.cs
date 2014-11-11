@@ -31,8 +31,12 @@ namespace DSharpLibrary
             CompareLessOrEqualThan, //18. <=
             CompareBiggerOrEqualThan, //19. >=
             ConditionIf, //20. if(expresion comparador expresion){ sent } subcond
-            //                   (6 25 5 14 1 26 27 5 5 18 1 24 28)
-            //                    ()
+            //                         if LeftParen ID [Comparador] INT/numero RightParen LeftBracket int ID = INT/numero Terminador RightBracket
+            //       Caso <            (6 25 5 14 1 26 27 5 5 18 1 24 28)
+            //       Caso >            (6 25 5 13 1 26 27 5 5 18 1 24 28)
+            //       Caso ==
+            //       Caso <=           (6 25 5 19 1 26 27 5 5 18 1 24 28)
+            //       Caso >=           (6 25 5 20 1 26 27 5 5 18 1 24 28)
             SubCondE, //21. Cualquiera
             SubCondElse, //22. else{sent}
             SubCondElseIf, //23. elseif(expresion comparador expresion) { sent } subcond
