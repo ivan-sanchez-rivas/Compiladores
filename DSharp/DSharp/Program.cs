@@ -38,6 +38,7 @@ namespace DSharp
                         Console.WriteLine("\n");
                         Console.WriteLine("Analizador Sintactico: \n");
                         rules = syntax.TokenStrip(machine.Tokens);
+            
                         foreach (SyntaxRules sr in rules)
                         {
                             Console.WriteLine(sr);

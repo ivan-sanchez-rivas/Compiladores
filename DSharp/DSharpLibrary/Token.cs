@@ -40,7 +40,8 @@ namespace DSharpLibrary
         Space,//29
         WhiteSpace,//30
         NewLine,//31
-        Tab //32
+        Tab, //32
+        Number // 33
     }
 
     public class Token

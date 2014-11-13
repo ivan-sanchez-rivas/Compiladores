@@ -55,6 +55,14 @@ namespace DSharpLibrary
             Tab, //36. [/t]
             EOF, //37. EOF
             ID, //38. [a-z A-Z] [a-z A-Z 0-9]*
+            Error, //39
+            TypeIntError, //40
+            ErrorIf, //41
+            SentenceError, //42
+            ErrorElse, //43
+            ErrorElseIf, //44
+            ErrorWhile, //45
+            ErrorCommentLong //46
         }
             private GrammarRules _type;
             private string _value;
