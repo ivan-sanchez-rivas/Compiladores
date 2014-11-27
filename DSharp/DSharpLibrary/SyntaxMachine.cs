@@ -11,7 +11,10 @@ namespace DSharpLibrary
     {
         private List<SyntaxState> _states = new List<SyntaxState>();
         private List<SyntaxRules> _rules = new List<SyntaxRules>();
+        private List<Variables> _variables = new List<Variables>(); 
+
         private string _tmp = string.Empty;
+        private List<string> _tokenValue = new List<string>(); 
         private List<int> _tokenNumber = new List<int>();
         List<List<int>> arrayList = new List<List<int>>();
         private int _ruleType = 0;
@@ -25,6 +28,12 @@ namespace DSharpLibrary
         public List<SyntaxRules> TokenStrip(List<Token> tokenList)
         {
             var syntax = new SyntaxMachine();
+            foreach (Token t in tokenList)
+            {
+                var val = t.Value;
+                _tokenValue.Add(val);
+            }
+
             foreach (Token t in tokenList)
             {
                 var num = (int)((TokenType)Enum.Parse(typeof(TokenType), t.Type.ToString()));
@@ -189,11 +198,13 @@ namespace DSharpLibrary
             return 0;
         }
 
+        private int indexValue = 0;
         private void SetStates()
         {
             // 0 
             _states.Add(new SyntaxState((x, y) =>
             {
+                
                 if (x[y].Count == 0)
                 {
                     return -2;
@@ -203,6 +214,7 @@ namespace DSharpLibrary
                     var value = x[y];
                     var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
                     if (result == "5 5 18 1") //int ID = [0-9]+ Terminador
+
                         return 1;
                     else if (result == "5 5 18 5" || result == "5 5 18 5 24")
                     {
@@ -283,7 +295,11 @@ namespace DSharpLibrary
                 var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
                 if (result == "24")
                 {
+                    var tokenValue = x[0][1];
+                    var tokenValue2 = x[0][3];
                     _ruleType = 26;
+                    var variable = new Variables(tokenValue.ToString(), "int", tokenValue2.ToString());
+                    _variables.Add(variable);
                     return 0;
                 }
                 else
@@ -345,6 +361,11 @@ namespace DSharpLibrary
                 var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
                 //if (result == "25 5")     // (expresion
                 //    return 2;
+
+                // 25 -> ( 
+                //5 -> ID
+                //13~20 -> COMPARADOR
+                //1 -> INT 
                 if (result == "25 5 13 1")  // > expresion
                     return 3;
                 if (result == "25 5 14 1")  // < expresion
