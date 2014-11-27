@@ -198,7 +198,6 @@ namespace DSharpLibrary
             return 0;
         }
 
-        private int indexValue = 0;
         private void SetStates()
         {
             // 0 
@@ -295,10 +294,13 @@ namespace DSharpLibrary
                 var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
                 if (result == "24")
                 {
-                    var tokenValue = x[0][1];
-                    var tokenValue2 = x[0][3];
+                    int indexVariable = 0;
+                    for (int i = 0; i < y; i++)
+                    {
+                        indexVariable += x[i].Count;
+                    }
                     _ruleType = 26;
-                    var variable = new Variables(tokenValue.ToString(), "int", tokenValue2.ToString());
+                    var variable = new Variables(_tokenValue[indexVariable-3], "int", _tokenValue[indexVariable-1]);
                     _variables.Add(variable);
                     return 0;
                 }
