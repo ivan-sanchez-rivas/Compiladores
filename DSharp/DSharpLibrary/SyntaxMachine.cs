@@ -12,13 +12,15 @@ namespace DSharpLibrary
         private List<SyntaxState> _states = new List<SyntaxState>();
         private List<SyntaxRules> _rules = new List<SyntaxRules>();
         private List<Variables> _variables = new List<Variables>(); 
-
-        private string _tmp = string.Empty;
-        private List<string> _tokenValue = new List<string>(); 
+        public List<string> _tokenValue = new List<string>();
+        public List<string> tokenValues = new List<string>();
         private List<int> _tokenNumber = new List<int>();
-        List<List<int>> arrayList = new List<List<int>>();
-        private int _ruleType = 0;
+        public List<List<int>> arrayList = new List<List<int>>();
         public List<SyntaxRules> Rules { get { return _rules; } }
+        private string _tmp = string.Empty;
+        private int _ruleType = 0;
+        int operateCounter = 0;
+        
         public SyntaxMachine()
         {
             SetStates();
@@ -27,6 +29,7 @@ namespace DSharpLibrary
         private bool success = false;
         public List<SyntaxRules> TokenStrip(List<Token> tokenList)
         {
+            
             var syntax = new SyntaxMachine();
             foreach (Token t in tokenList)
             {
@@ -121,14 +124,23 @@ namespace DSharpLibrary
                     index++;
                 }
             }
-            syntax.Operate(arrayList);
+            syntax.Operate(arrayList,_tokenValue);
 
             return syntax.Rules;
             //arrayList.Add(array);
             //var result = string.Join(",", _tokenNumber.Select(x => x.ToString()).ToArray());
         }
-        public int Operate(List<List<int>> input)
+        public int Operate(List<List<int>> input, List<string> _value)
         {
+            operateCounter++;
+            if (operateCounter == 1)
+            {
+                foreach (string token in _value)
+                {
+                    tokenValues.Add(token);
+                }
+            }
+
             //input.Trim();
             //while ((currentState = _states[currentState].Operate(input, inputIndex)) != -1)
             if ((currentState = _states[currentState].Operate(input, inputIndex)) != -1)
@@ -187,7 +199,7 @@ namespace DSharpLibrary
                         return 1;
                     }
                 }
-                Operate(input);
+                Operate(input,_value);
             }
             else
             {
@@ -201,9 +213,9 @@ namespace DSharpLibrary
         private void SetStates()
         {
             // 0 
-            _states.Add(new SyntaxState((x, y) =>
+           
+            _states.Add(new SyntaxState((x,y) =>
             {
-                
                 if (x[y].Count == 0)
                 {
                     return -2;
@@ -300,7 +312,7 @@ namespace DSharpLibrary
                         indexVariable += x[i].Count;
                     }
                     _ruleType = 26;
-                    var variable = new Variables(_tokenValue[indexVariable-3], "int", _tokenValue[indexVariable-1]);
+                    var variable = new Variables(tokenValues[indexVariable-3], "int", tokenValues[indexVariable-1]);
                     _variables.Add(variable);
                     return 0;
                 }
