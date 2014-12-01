@@ -83,6 +83,21 @@ namespace DSharpLibrary
                     arrayList.Add(new List<int>());
                     index++;
                 }
+                else if (item == 15) // AND
+                {
+                    arrayList.Add(new List<int>());
+                    index++;
+                }
+                else if (item == 16) // NOT
+                {
+                    arrayList.Add(new List<int>());
+                    index++;
+                }
+                else if (item == 17) // OR
+                {
+                    arrayList.Add(new List<int>());
+                    index++;
+                }
                 else if (item == 26) // )
                 {
                     arrayList.Add(new List<int>());
@@ -271,7 +286,7 @@ namespace DSharpLibrary
                         return 3;
                     if (result == "8 27") //else
                         return 4;
-                    else if (result == "8 8") //else{ error
+                    else if (result == "8 27") //else{ error
                     {
                         _ruleType = 43;
                         return -4;
@@ -397,20 +412,58 @@ namespace DSharpLibrary
                 if (result == "25 5 20 5") // >= expresion
                     return 3;
 
-                if (result == "25 1 13 5")  // > expresion
+                //MULTIOPERADORES
+                if (result == "15") // AND
                     return 3;
-                if (result == "25 1 14 5")  // < expresion
+                if (result == "16") //NOT
                     return 3;
-                if (result == "25 1 19 5") // <= expresion
+                if (result == "17") //OR
                     return 3;
-                if (result == "25 1 20 5") // >= expresion
+                if (result == "5 13 1")  // > expresion
                     return 3;
+                if (result == "5 14 1")  // < expresion
+                    return 3;
+                if (result == "5 19 1") // <= expresion
+                    return 3;
+                if (result == "5 20 1") // >= expresion
+                    return 3;
+                if (result == "5 13 5")  // > expresion
+                    return 3;
+                if (result == "5 14 5")  // < expresion
+                    return 3;
+                if (result == "5 19 5") // <= expresion
+                    return 3;
+                if (result == "5 20 5") // >= expresion
+                    return 3;
+                if (result == "1")
+                    return 3;
+                //numero primero y despues variable
+                if (result == "25 1")  // > expresion
+                    return 3;
+                if (result == "13 5 26")
+                    return 3;
+                if (result == "14 5 26")
+                    return 3;
+                if (result == "19 5 26")
+                    return 3;
+                if (result == "20 5 26")
+                    return 3;
+
+                // numero y numero 
+                if (result == "13 1")
+                    return 3;
+                if (result == "14 1")
+                    return 3;
+                if (result == "19 1")
+                    return 3;
+                if (result == "20 1")
+                    return 3;
+
                 if (result == "26")
                     return 3;
                 if (result == "27") // {
                     return 3;
-                //else if (result == "5 5 18 1 24") //int ID = [0-9]+ Terminador
-                //    return 2;
+
                 if (result == "28") // }
                 {
                     _ruleType = 20;
@@ -467,21 +520,57 @@ namespace DSharpLibrary
                 if (result == "25 5 20 5") // >= expresion
                     return 5;
 
-                if (result == "25 1 13 5")  // > expresion
+                //MULTIOPERADORES
+                if (result == "15") // AND
                     return 5;
-                if (result == "25 1 14 5")  // < expresion
+                if (result == "16") //NOT
                     return 5;
-                if (result == "25 1 19 5") // <= expresion
+                if (result == "17") //OR
                     return 5;
-                if (result == "25 1 20 5") // >= expresion
+                if (result == "5 13 1")  // > expresion
+                    return 5;
+                if (result == "5 14 1")  // < expresion
+                    return 5;
+                if (result == "5 19 1") // <= expresion
+                    return 5;
+                if (result == "5 20 1") // >= expresion
+                    return 5;
+                if (result == "5 13 5")  // > expresion
+                    return 5;
+                if (result == "5 14 5")  // < expresion
+                    return 5;
+                if (result == "5 19 5") // <= expresion
+                    return 5;
+                if (result == "5 20 5") // >= expresion
+                    return 5;
+                if (result == "1")
+                    return 5;
+
+                //numero primero y despues variable
+                if (result == "25 1")  // > expresion
+                    return 5;
+                if (result == "13 5 26")
+                    return 5;
+                if (result == "14 5 26")
+                    return 5;
+                if (result == "19 5 26")
+                    return 5;
+                if (result == "20 5 26")
+                    return 5;
+                // numero y numero 
+                if (result == "13 1")
+                    return 5;
+                if (result == "14 1")
+                    return 5;
+                if (result == "19 1")
+                    return 5;
+                if (result == "20 1")
                     return 5;
 
                 if (result == "26")
                     return 5;
                 if (result == "27") // {
                     return 5;
-                //else if (result == "5 5 18 1 24") //int ID = [0-9]+ Terminador
-                //    return 2;
                 if (result == "28") // }
                 {
                     _ruleType = 23;
@@ -489,7 +578,7 @@ namespace DSharpLibrary
                 }
                 else
                 {
-                    _ruleType = 41;
+                    _ruleType = 44;
                     return -3;
                 }
             }));
@@ -501,31 +590,43 @@ namespace DSharpLibrary
                 var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
                 //if (result == "25 5")     // (expresion
                 //    return 2;
-                if (result == "25 5 13 1 26")  // > expresion
+                if (result == "25 5 13 1")  // > expresion
                     return 6;
-                if (result == "25 5 14 1 26")  // < expresion
+                if (result == "25 5 14 1")  // < expresion
                     return 6;
-                if (result == "25 5 19 1 26") // <= expresion
+                if (result == "25 5 19 1") // <= expresion
                     return 6;
-                if (result == "25 5 20 1 26") // >= expresion
-                    return 6;
-
-                if (result == "25 5 13 5 26")  // > expresion
-                    return 6;
-                if (result == "25 5 14 5 26")  // < expresion
-                    return 6;
-                if (result == "25 5 19 5 26") // <= expresion
-                    return 6;
-                if (result == "25 5 20 5 26") // >= expresion
+                if (result == "25 5 20 1") // >= expresion
                     return 6;
 
-                if (result == "25 1 13 5 26")  // > expresion
+                if (result == "25 5 13 5")  // > expresion
                     return 6;
-                if (result == "25 1 14 5 26")  // < expresion
+                if (result == "25 5 14 5")  // < expresion
                     return 6;
-                if (result == "25 1 19 5 26") // <= expresion
+                if (result == "25 5 19 5") // <= expresion
                     return 6;
-                if (result == "25 1 20 5 26") // >= expresion
+                if (result == "25 5 20 5") // >= expresion
+                    return 6;
+
+                //numero primero y despues variable
+                if (result == "25 1")  // > expresion
+                    return 6;
+                if (result == "13 5 26")
+                    return 6;
+                if (result == "14 5 26")
+                    return 6;
+                if (result == "19 5 26")
+                    return 6;
+                if (result == "20 5 26")
+                    return 6;
+                // numero y numero 
+                if (result == "13 1")
+                    return 6;
+                if (result == "14 1")
+                    return 6;
+                if (result == "19 1")
+                    return 6;
+                if (result == "20 1")
                     return 6;
 
                 if (result == "26")
