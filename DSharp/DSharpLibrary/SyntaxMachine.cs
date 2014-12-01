@@ -63,6 +63,11 @@ namespace DSharpLibrary
                     arrayList.Add(new List<int>());
                     index++;
                 }
+                if (item == 34) // decimal
+                {
+                    arrayList.Add(new List<int>());
+                    index++;
+                }
                 else if (item == 9) //+
                 {
                     arrayList.Add(new List<int>());
@@ -247,6 +252,9 @@ namespace DSharpLibrary
                         _ruleType = 40;
                         return -4;
                     }
+                    if (result == "2 5 18 1" || result == "2 5 18 34") // double ID = [0-9].[0-9] TERMINADOR
+                        return 8;
+                    //
                     if (result == "5 9") //ID +
                         return 2;
                     else if (result == "5 5")
@@ -275,7 +283,7 @@ namespace DSharpLibrary
                         _ruleType = 42;
                         return -4;
                     }
-                    if (result == "1") //number +
+                    if (result == "1" || result == "34") //number + OR number decimal
                         return 2;
                     else if (result == "1 5")
                     {
@@ -355,6 +363,8 @@ namespace DSharpLibrary
                     return 2;
                 else if (result == "1") // number /
                     return 2;
+                else if (result == "34") // decimal
+                    return 2;
                 else if (result == "9") // number +
                     return 2;
                 else if (result == "10") // number -
@@ -363,6 +373,7 @@ namespace DSharpLibrary
                     return 2;
                 else if (result == "12") // number /
                     return 2;
+
                 else if (result == "5 24") //ID ;
                 {
                     _ruleType = 3;
@@ -388,13 +399,6 @@ namespace DSharpLibrary
             {
                 var value = x[y];
                 var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
-                //if (result == "25 5")     // (expresion
-                //    return 2;
-
-                // 25 -> ( 
-                //5 -> ID
-                //13~20 -> COMPARADOR
-                //1 -> INT 
                 if (result == "25 5 13 1")  // > expresion
                     return 3;
                 if (result == "25 5 14 1")  // < expresion
@@ -411,7 +415,41 @@ namespace DSharpLibrary
                     return 3;
                 if (result == "25 5 20 5") // >= expresion
                     return 3;
-
+                if (result == "25 5 13 1 26")  // > expresion
+                    return 3;
+                if (result == "25 5 14 1 26")  // < expresion
+                    return 3;
+                if (result == "25 5 19 1 26") // <= expresion
+                    return 3;
+                if (result == "25 5 20 1 26") // >= expresion
+                    return 3;
+                if (result == "25 5 13 5 26")  // > expresion
+                    return 3;
+                if (result == "25 5 14 5 26")  // < expresion
+                    return 3;
+                if (result == "25 5 19 5 26") // <= expresion
+                    return 3;
+                if (result == "25 5 20 5 26") // >= expresion
+                    return 3;
+                //ID y luego DOUBLE
+                if (result == "25 5 13 34")  // > expresion
+                    return 3;
+                if (result == "25 5 14 34")  // < expresion
+                    return 3;
+                if (result == "25 5 19 34") // <= expresion
+                    return 3;
+                if (result == "25 5 20 34") // >= expresion
+                    return 3;
+                if (result == "25 5 13 34")  // > expresion
+                    return 3;
+                if (result == "25 5 14 34")  // < expresion
+                    return 3;
+                if (result == "25 5 19 34") // <= expresion
+                    return 3;
+                if (result == "25 5 20 34") // >= expresion
+                    return 3;
+                if (result == "25 34")
+                    return 3;
                 //MULTIOPERADORES
                 if (result == "15") // AND
                     return 3;
@@ -458,12 +496,25 @@ namespace DSharpLibrary
                     return 3;
                 if (result == "20 1")
                     return 3;
-
+                if (result == "25 1")
+                    return 3;
+                //numero y double
+                if (result == "13 34")
+                    return 3;
+                if (result == "14 34")
+                    return 3;
+                if (result == "19 34")
+                    return 3;
+                if (result == "20 34")
+                    return 3;
+                if (result == "25 34")
+                    return 3;
+                //
                 if (result == "26")
                     return 3;
                 if (result == "27") // {
                     return 3;
-
+                
                 if (result == "28") // }
                 {
                     _ruleType = 20;
@@ -520,6 +571,42 @@ namespace DSharpLibrary
                 if (result == "25 5 20 5") // >= expresion
                     return 5;
 
+                if (result == "25 5 13 1 26")  // > expresion
+                    return 5;
+                if (result == "25 5 14 1 26")  // < expresion
+                    return 5;
+                if (result == "25 5 19 1 26") // <= expresion
+                    return 5;
+                if (result == "25 5 20 1 26") // >= expresion
+                    return 5;
+                if (result == "25 5 13 5 26")  // > expresion
+                    return 5;
+                if (result == "25 5 14 5 26")  // < expresion
+                    return 5;
+                if (result == "25 5 19 5 26") // <= expresion
+                    return 5;
+                if (result == "25 5 20 5 26") // >= expresion
+                    return 5;
+                //ID y luego DOUBLE
+                if (result == "25 5 13 34")  // > expresion
+                    return 5;
+                if (result == "25 5 14 34")  // < expresion
+                    return 5;
+                if (result == "25 5 19 34") // <= expresion
+                    return 5;
+                if (result == "25 5 20 34") // >= expresion
+                    return 5;
+                if (result == "25 5 13 34")  // > expresion
+                    return 5;
+                if (result == "25 5 14 34")  // < expresion
+                    return 5;
+                if (result == "25 5 19 34") // <= expresion
+                    return 5;
+                if (result == "25 5 20 34") // >= expresion
+                    return 5;
+                if (result == "25 34")
+                    return 5;
+
                 //MULTIOPERADORES
                 if (result == "15") // AND
                     return 5;
@@ -566,7 +653,18 @@ namespace DSharpLibrary
                     return 5;
                 if (result == "20 1")
                     return 5;
-
+                //numero y double
+                if (result == "13 34")
+                    return 5;
+                if (result == "14 34")
+                    return 5;
+                if (result == "19 34")
+                    return 5;
+                if (result == "20 34")
+                    return 5;
+                if (result == "25 34")
+                    return 5;
+                //
                 if (result == "26")
                     return 5;
                 if (result == "27") // {
@@ -608,6 +706,68 @@ namespace DSharpLibrary
                 if (result == "25 5 20 5") // >= expresion
                     return 6;
 
+                if (result == "25 5 13 1 26")  // > expresion
+                    return 6;
+                if (result == "25 5 14 1 26")  // < expresion
+                    return 6;
+                if (result == "25 5 19 1 26") // <= expresion
+                    return 6;
+                if (result == "25 5 20 1 26") // >= expresion
+                    return 6;
+                if (result == "25 5 13 5 26")  // > expresion
+                    return 6;
+                if (result == "25 5 14 5 26")  // < expresion
+                    return 6;
+                if (result == "25 5 19 5 26") // <= expresion
+                    return 6;
+                if (result == "25 5 20 5 26") // >= expresion
+                    return 6;
+                //ID y luego DOUBLE
+                if (result == "25 5 13 34")  // > expresion
+                    return 6;
+                if (result == "25 5 14 34")  // < expresion
+                    return 6;
+                if (result == "25 5 19 34") // <= expresion
+                    return 6;
+                if (result == "25 5 20 34") // >= expresion
+                    return 6;
+                if (result == "25 5 13 34")  // > expresion
+                    return 6;
+                if (result == "25 5 14 34")  // < expresion
+                    return 6;
+                if (result == "25 5 19 34") // <= expresion
+                    return 6;
+                if (result == "25 5 20 34") // >= expresion
+                    return 6;
+                if (result == "25 34")
+                    return 6;
+
+                //MULTIOPERADORES
+                if (result == "15") // AND
+                    return 6;
+                if (result == "16") //NOT
+                    return 6;
+                if (result == "17") //OR
+                    return 6;
+                if (result == "5 13 1")  // > expresion
+                    return 6;
+                if (result == "5 14 1")  // < expresion
+                    return 6;
+                if (result == "5 19 1") // <= expresion
+                    return 6;
+                if (result == "5 20 1") // >= expresion
+                    return 6;
+                if (result == "5 13 5")  // > expresion
+                    return 6;
+                if (result == "5 14 5")  // < expresion
+                    return 6;
+                if (result == "5 19 5") // <= expresion
+                    return 6;
+                if (result == "5 20 5") // >= expresion
+                    return 6;
+                if (result == "1")
+                    return 6;
+
                 //numero primero y despues variable
                 if (result == "25 1")  // > expresion
                     return 6;
@@ -628,7 +788,18 @@ namespace DSharpLibrary
                     return 6;
                 if (result == "20 1")
                     return 6;
-
+                //numero y double
+                if (result == "13 34")
+                    return 5;
+                if (result == "14 34")
+                    return 5;
+                if (result == "19 34")
+                    return 5;
+                if (result == "20 34")
+                    return 5;
+                if (result == "25 34")
+                    return 5;
+                //
                 if (result == "26")
                     return 6;
                 if (result == "27") // {
@@ -677,6 +848,30 @@ namespace DSharpLibrary
                 //    _ruleType = 46;
                 //    return -3;
                 //}
+
+            }));
+            // 8 TypeDouble
+            _states.Add(new SyntaxState((x, y) =>
+            {
+                var value = x[y];
+                var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
+                if (result == "24")
+                {
+                    int indexVariable = 0;
+                    for (int i = 0; i < y; i++)
+                    {
+                        indexVariable += x[i].Count;
+                    }
+                    _ruleType = 28;
+                    var variable = new Variables(tokenValues[indexVariable - 3], "double", tokenValues[indexVariable - 1]);
+                    _variables.Add(variable);
+                    return 0;
+                }
+                else
+                {
+                    _ruleType = 47;
+                    return 0;
+                }
 
             }));
         }

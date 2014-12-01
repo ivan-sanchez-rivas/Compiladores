@@ -152,8 +152,16 @@ namespace DSharpLibrary
 
                 else if (validIdent.Contains(value) && numbers.Contains(value) == false)
                 {
-                    _tokenType = 5;
-                    return 8;
+                    if(value == 'd')
+                    {
+                        return 31;
+                    }
+                    else
+                    {
+                        _tokenType = 5;
+                        return 8;
+                    }
+ 
                 }
                 else if (value == '\t')
                     return -2;
@@ -168,7 +176,7 @@ namespace DSharpLibrary
                 if (numbers.Contains(x[y]))
                     return 1;
                 else if (x[y] == '.')
-                    return 2;
+                    return 31;
                 else
                     return 0;
             }));
@@ -516,6 +524,48 @@ namespace DSharpLibrary
                 }
                 return 0;
                 //_tokenType = 6;
+                //return 5;
+            }));
+
+            // 31 double
+            _states.Add(new State((x, y) =>
+            {
+                if (x[y] == 'o')
+                {
+                    _tokenType = 5;
+                    return 31;
+                }
+                else if (x[y] == 'u')
+                {
+                    _tokenType = 5;
+                    return 31;
+
+                }
+                else if (x[y] == 'b')
+                {
+                    _tokenType = 5;
+                    return 31;
+
+                }
+                else if (x[y] == 'l')
+                {
+                    _tokenType = 5;
+                    return 31;
+
+                }
+                else if (x[y] == 'e')
+                {
+                    _tokenType = 2;
+                    return 31;
+
+                }
+                else if (validIdent.Contains(x[y]))
+                {
+                    _tokenType = 34;
+                    return 31;
+                }
+                return 0;
+                //_tokenType = 4;
                 //return 5;
             }));
         }

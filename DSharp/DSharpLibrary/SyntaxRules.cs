@@ -62,7 +62,8 @@ namespace DSharpLibrary
             ErrorElse, //43
             ErrorElseIf, //44
             ErrorWhile, //45
-            ErrorCommentLong //46
+            ErrorCommentLong, //46
+            TypeDoubleError //47
         }
             private GrammarRules _type;
             private string _value;
