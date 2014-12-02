@@ -457,6 +457,8 @@ namespace DSharpLibrary
                     return 3;
                 if (result == "17") //OR
                     return 3;
+                if (result == "18") // =
+                    return 3;
                 if (result == "5 13 1")  // > expresion
                     return 3;
                 if (result == "5 14 1")  // < expresion
@@ -508,6 +510,26 @@ namespace DSharpLibrary
                 if (result == "20 34")
                     return 3;
                 if (result == "25 34")
+                    return 3;
+                //
+                if (result == "25 5 14 5 15")
+                    return 3;
+                if (result == "25 5 14 5 16")
+                    return 3;
+                if (result == "25 5 14 5 17")
+                    return 3;
+                if (result == "25 5 14 5 18")
+                    return 3;
+                //
+                if (result == "5 13 5 26")  // > expresion
+                    return 3;
+                if (result == "5 14 5 26")  // < expresion
+                    return 3;
+                if (result == "5 19 5 26") // <= expresion
+                    return 3;
+                if (result == "5 20 5 26") // >= expresion
+                    return 3;
+                if (result == "5 13 5 26")  // > expresion
                     return 3;
                 //
                 if (result == "26")
@@ -665,6 +687,27 @@ namespace DSharpLibrary
                 if (result == "25 34")
                     return 5;
                 //
+                //
+                if (result == "25 5 14 5 15")
+                    return 5;
+                if (result == "25 5 14 5 16")
+                    return 5;
+                if (result == "25 5 14 5 17")
+                    return 5;
+                if (result == "25 5 14 5 18")
+                    return 5;
+                //
+                if (result == "5 13 5 26")  // > expresion
+                    return 5;
+                if (result == "5 14 5 26")  // < expresion
+                    return 5;
+                if (result == "5 19 5 26") // <= expresion
+                    return 5;
+                if (result == "5 20 5 26") // >= expresion
+                    return 5;
+                if (result == "5 13 5 26")  // > expresion
+                    return 5;
+                //
                 if (result == "26")
                     return 5;
                 if (result == "27") // {
@@ -790,15 +833,36 @@ namespace DSharpLibrary
                     return 6;
                 //numero y double
                 if (result == "13 34")
-                    return 5;
+                    return 6;
                 if (result == "14 34")
-                    return 5;
+                    return 6;
                 if (result == "19 34")
-                    return 5;
+                    return 6;
                 if (result == "20 34")
-                    return 5;
+                    return 6;
                 if (result == "25 34")
-                    return 5;
+                    return 6;
+                //
+                //
+                if (result == "25 5 14 5 15")
+                    return 6;
+                if (result == "25 5 14 5 16")
+                    return 6;
+                if (result == "25 5 14 5 17")
+                    return 6;
+                if (result == "25 5 14 5 18")
+                    return 6;
+                //
+                if (result == "5 13 5 26")  // > expresion
+                    return 6;
+                if (result == "5 14 5 26")  // < expresion
+                    return 6;
+                if (result == "5 19 5 26") // <= expresion
+                    return 6;
+                if (result == "5 20 5 26") // >= expresion
+                    return 6;
+                if (result == "5 13 5 26")  // > expresion
+                    return 6;
                 //
                 if (result == "26")
                     return 6;
