@@ -8,9 +8,9 @@ namespace DSharpLibrary
 {
     public class Variables
     {
-        string nombreVariable { get; set; }
-        string tipoVariable { get; set; }
-        string valorVariable { get; set; }
+        public string nombreVariable { get; set; }
+        public string tipoVariable { get; set; }
+        public string valorVariable { get; set; }
 
         public Variables(string _nombreVariable, string _tipoVariable, string _valorVariable)
         {

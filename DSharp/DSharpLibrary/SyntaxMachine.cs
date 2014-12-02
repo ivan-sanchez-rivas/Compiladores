@@ -352,43 +352,42 @@ namespace DSharpLibrary
                 var value = x[y];
                 
                 var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
-                
-                if (result == "5 9") // ID +
-                    return 2;
-                else if (result == "5 10") // ID -
-                    return 2;
-                else if (result == "5 11") // ID *
-                    return 2;
-                else if (result == "5 12") // ID (/)
-                    return 2;
-                else if (result == "1") // number /
-                    return 2;
-                else if (result == "34") // decimal
-                    return 2;
-                else if (result == "9") // number +
-                    return 2;
-                else if (result == "10") // number -
-                    return 2;
-                else if (result == "11") // number *
-                    return 2;
-                else if (result == "12") // number /
-                    return 2;
+                    if (result == "5 9") // ID +
+                        return 2;
+                    else if (result == "5 10") // ID -
+                        return 2;
+                    else if (result == "5 11") // ID *
+                        return 2;
+                    else if (result == "5 12") // ID (/)
+                        return 2;
+                    else if (result == "1") // number /
+                        return 2;
+                    else if (result == "34") // decimal
+                        return 2;
+                    else if (result == "9") // number +
+                        return 2;
+                    else if (result == "10") // number -
+                        return 2;
+                    else if (result == "11") // number *
+                        return 2;
+                    else if (result == "12") // number /
+                        return 2;
 
-                else if (result == "5 24") //ID ;
-                {
-                    _ruleType = 3;
-                    return 0;
-                }
-                else if (result == "24") //number;
-                {
-                    _ruleType = 3;
-                    return 0;
-                }
-                else
-                {
-                    _ruleType = 42;
-                    return 0;
-                }
+                    else if (result == "5 24") //ID ;
+                    {
+                        _ruleType = 3;
+                        return 0;
+                    }
+                    else if (result == "24") //number;
+                    {
+                        _ruleType = 3;
+                        return 0;
+                    }
+                    else
+                    {
+                        _ruleType = 42;
+                        return 0;
+                    }
 
 
             }));
@@ -399,154 +398,171 @@ namespace DSharpLibrary
             {
                 var value = x[y];
                 var result = string.Join(" ", value.Select(z => z.ToString()).ToArray());
-                if (result == "25 5 13 1")  // > expresion
-                    return 3;
-                if (result == "25 5 14 1")  // < expresion
-                    return 3;
-                if (result == "25 5 19 1") // <= expresion
-                    return 3;
-                if (result == "25 5 20 1") // >= expresion
-                    return 3;
-                if (result == "25 5 13 5")  // > expresion
-                    return 3;
-                if (result == "25 5 14 5")  // < expresion
-                    return 3;
-                if (result == "25 5 19 5") // <= expresion
-                    return 3;
-                if (result == "25 5 20 5") // >= expresion
-                    return 3;
-                if (result == "25 5 13 1 26")  // > expresion
-                    return 3;
-                if (result == "25 5 14 1 26")  // < expresion
-                    return 3;
-                if (result == "25 5 19 1 26") // <= expresion
-                    return 3;
-                if (result == "25 5 20 1 26") // >= expresion
-                    return 3;
-                if (result == "25 5 13 5 26")  // > expresion
-                    return 3;
-                if (result == "25 5 14 5 26")  // < expresion
-                    return 3;
-                if (result == "25 5 19 5 26") // <= expresion
-                    return 3;
-                if (result == "25 5 20 5 26") // >= expresion
-                    return 3;
-                //ID y luego DOUBLE
-                if (result == "25 5 13 34")  // > expresion
-                    return 3;
-                if (result == "25 5 14 34")  // < expresion
-                    return 3;
-                if (result == "25 5 19 34") // <= expresion
-                    return 3;
-                if (result == "25 5 20 34") // >= expresion
-                    return 3;
-                if (result == "25 5 13 34")  // > expresion
-                    return 3;
-                if (result == "25 5 14 34")  // < expresion
-                    return 3;
-                if (result == "25 5 19 34") // <= expresion
-                    return 3;
-                if (result == "25 5 20 34") // >= expresion
-                    return 3;
-                if (result == "25 34")
-                    return 3;
-                //MULTIOPERADORES
-                if (result == "15") // AND
-                    return 3;
-                if (result == "16") //NOT
-                    return 3;
-                if (result == "17") //OR
-                    return 3;
-                if (result == "18") // =
-                    return 3;
-                if (result == "5 13 1")  // > expresion
-                    return 3;
-                if (result == "5 14 1")  // < expresion
-                    return 3;
-                if (result == "5 19 1") // <= expresion
-                    return 3;
-                if (result == "5 20 1") // >= expresion
-                    return 3;
-                if (result == "5 13 5")  // > expresion
-                    return 3;
-                if (result == "5 14 5")  // < expresion
-                    return 3;
-                if (result == "5 19 5") // <= expresion
-                    return 3;
-                if (result == "5 20 5") // >= expresion
-                    return 3;
-                if (result == "1")
-                    return 3;
-                //numero primero y despues variable
-                if (result == "25 1")  // > expresion
-                    return 3;
-                if (result == "13 5 26")
-                    return 3;
-                if (result == "14 5 26")
-                    return 3;
-                if (result == "19 5 26")
-                    return 3;
-                if (result == "20 5 26")
-                    return 3;
+              //  if (result.Contains("5"))
+               // {
+                    //var linea = result.Split(' ');
+                    //bool primero, segundo;
+                    //foreach (var item in _variables)
+                    //{
+                    //    if(item.nombreVariable == linea[1])
+                    //    {
+                    //        primero = true;
+                    //    }
 
-                // numero y numero 
-                if (result == "13 1")
-                    return 3;
-                if (result == "14 1")
-                    return 3;
-                if (result == "19 1")
-                    return 3;
-                if (result == "20 1")
-                    return 3;
-                if (result == "25 1")
-                    return 3;
-                //numero y double
-                if (result == "13 34")
-                    return 3;
-                if (result == "14 34")
-                    return 3;
-                if (result == "19 34")
-                    return 3;
-                if (result == "20 34")
-                    return 3;
-                if (result == "25 34")
-                    return 3;
-                //
-                if (result == "25 5 14 5 15")
-                    return 3;
-                if (result == "25 5 14 5 16")
-                    return 3;
-                if (result == "25 5 14 5 17")
-                    return 3;
-                if (result == "25 5 14 5 18")
-                    return 3;
-                //
-                if (result == "5 13 5 26")  // > expresion
-                    return 3;
-                if (result == "5 14 5 26")  // < expresion
-                    return 3;
-                if (result == "5 19 5 26") // <= expresion
-                    return 3;
-                if (result == "5 20 5 26") // >= expresion
-                    return 3;
-                if (result == "5 13 5 26")  // > expresion
-                    return 3;
-                //
-                if (result == "26")
-                    return 3;
-                if (result == "27") // {
-                    return 3;
-                
-                if (result == "28") // }
-                {
-                    _ruleType = 20;
-                    return 0;
-                }
-                else
-                {
-                    _ruleType = 41;
-                    return -3;
-                }
+                    //    if (item.nombreVariable == linea[3])
+                    //    {
+                    //        segundo = true;
+                    //    }
+                    //}
+                    if (result == "25 5 13 1")  // > expresion
+                        return 3;
+                    if (result == "25 5 14 1")  // < expresion
+                        return 3;
+                    if (result == "25 5 19 1") // <= expresion
+                        return 3;
+                    if (result == "25 5 20 1") // >= expresion
+                        return 3;
+                    if (result == "25 5 13 5")  // > expresion
+                        return 3;
+                    if (result == "25 5 14 5")  // < expresion
+                        return 3;
+                    if (result == "25 5 19 5") // <= expresion
+                        return 3;
+                    if (result == "25 5 20 5") // >= expresion
+                        return 3;
+                    if (result == "25 5 13 1 26")  // > expresion
+                        return 3;
+                    if (result == "25 5 14 1 26")  // < expresion
+                        return 3;
+                    if (result == "25 5 19 1 26") // <= expresion
+                        return 3;
+                    if (result == "25 5 20 1 26") // >= expresion
+                        return 3;
+                    if (result == "25 5 13 5 26")  // > expresion
+                        return 3;
+                    if (result == "25 5 14 5 26")  // < expresion
+                        return 3;
+                    if (result == "25 5 19 5 26") // <= expresion
+                        return 3;
+                    if (result == "25 5 20 5 26") // >= expresion
+                        return 3;
+                    //ID y luego DOUBLE
+                    if (result == "25 5 13 34")  // > expresion
+                        return 3;
+                    if (result == "25 5 14 34")  // < expresion
+                        return 3;
+                    if (result == "25 5 19 34") // <= expresion
+                        return 3;
+                    if (result == "25 5 20 34") // >= expresion
+                        return 3;
+                    if (result == "25 5 13 34")  // > expresion
+                        return 3;
+                    if (result == "25 5 14 34")  // < expresion
+                        return 3;
+                    if (result == "25 5 19 34") // <= expresion
+                        return 3;
+                    if (result == "25 5 20 34") // >= expresion
+                        return 3;
+                    if (result == "25 34")
+                        return 3;
+                    //MULTIOPERADORES
+                    if (result == "15") // AND
+                        return 3;
+                    if (result == "16") //NOT
+                        return 3;
+                    if (result == "17") //OR
+                        return 3;
+                    if (result == "18") // =
+                        return 3;
+                    if (result == "5 13 1")  // > expresion
+                        return 3;
+                    if (result == "5 14 1")  // < expresion
+                        return 3;
+                    if (result == "5 19 1") // <= expresion
+                        return 3;
+                    if (result == "5 20 1") // >= expresion
+                        return 3;
+                    if (result == "5 13 5")  // > expresion
+                        return 3;
+                    if (result == "5 14 5")  // < expresion
+                        return 3;
+                    if (result == "5 19 5") // <= expresion
+                        return 3;
+                    if (result == "5 20 5") // >= expresion
+                        return 3;
+                    if (result == "1")
+                        return 3;
+                    //numero primero y despues variable
+                    if (result == "25 1")  // > expresion
+                        return 3;
+                    if (result == "13 5 26")
+                        return 3;
+                    if (result == "14 5 26")
+                        return 3;
+                    if (result == "19 5 26")
+                        return 3;
+                    if (result == "20 5 26")
+                        return 3;
+
+                    // numero y numero 
+                    if (result == "13 1")
+                        return 3;
+                    if (result == "14 1")
+                        return 3;
+                    if (result == "19 1")
+                        return 3;
+                    if (result == "20 1")
+                        return 3;
+                    if (result == "25 1")
+                        return 3;
+                    //numero y double
+                    if (result == "13 34")
+                        return 3;
+                    if (result == "14 34")
+                        return 3;
+                    if (result == "19 34")
+                        return 3;
+                    if (result == "20 34")
+                        return 3;
+                    if (result == "25 34")
+                        return 3;
+                    //
+                    if (result == "25 5 14 5 15")
+                        return 3;
+                    if (result == "25 5 14 5 16")
+                        return 3;
+                    if (result == "25 5 14 5 17")
+                        return 3;
+                    if (result == "25 5 14 5 18")
+                        return 3;
+                    //
+                    if (result == "5 13 5 26")  // > expresion
+                        return 3;
+                    if (result == "5 14 5 26")  // < expresion
+                        return 3;
+                    if (result == "5 19 5 26") // <= expresion
+                        return 3;
+                    if (result == "5 20 5 26") // >= expresion
+                        return 3;
+                    if (result == "5 13 5 26")  // > expresion
+                        return 3;
+                    //
+                    if (result == "26")
+                        return 3;
+                    if (result == "27") // {
+                        return 3;
+
+                    if (result == "28") // }
+                    {
+                        _ruleType = 20;
+                        return 0;
+                    }
+                    else
+                    {
+                        _ruleType = 41;
+                        return -3;
+                    }
+               // }
             }));
 
             // 4 ELSE CONDITION
